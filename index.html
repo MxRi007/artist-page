@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Artist Page with Bottom-Right Audio Player</title>
+<style>
+  body {
+      font-family: "ＭＳ Ｐゴシック";
+      margin: 0;
+      padding: 0 12px 60px;
+      background: rgba(252, 255, 255, 0.995);
+  }
+
+
+
+  :root{
+    --btn-size: 22px;
+    --icon-size: 20px;
+  }
+
+  /* Header left: icon + bio */
+  .header-left {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    align-items: flex-start;
+    padding: 6px;
+    z-index: 9998;
+    max-width: 350px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .artist-icon {
+    width: 150px !important;
+    height: auto !important;
+    flex-shrink: 0;
+    margin-right: 10px;
+    display: block;
+    border-radius: 0;
+  }
+  .artist-bio {
+    font-size: 14px;
+    max-width: 180px;
+    color: #222;
+    line-height: 1.4;
+  }
+
+  .artist-bio b {
+    margin-bottom: 18px;
+    font-size: 14px;
+    border-bottom: 2px solid #222;
+    padding-bottom: 4px;
+    max-width: max-content;
+  }
+
+  /* Feed container */
+  .feed {
+    margin-top: 240px;
+    max-width: 650px;
+    padding: 12px 20px 24px;
+    border-radius: 0;
+    box-shadow: none;
+    color: #222;
+  }
+
+  .feed h2 {
+    margin-bottom: 18px;
+    font-size: 14px;
+    border-bottom: 2px solid #222;
+    padding-bottom: 4px;
+    max-width: max-content;
+  }
+
+  /* Each feed item */
+  .feed-item {
+    margin-bottom: 28px;
+    border-radius: 0;
+    padding: 14px 18px 18px;
+    box-shadow: none;
+    border: 1.5px solid #222;
+    border-style: solid;
+  }
+  /* Remove dashed border from last feed-item */
+  .feed-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .feed-item-title {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #111;
+  }
+  .feed-item-date {
+    font-size: 14px;
+    color: silver;
+    margin-bottom: 10px;
+  }
+
+  /* Feed images */
+  .feed-item img {
+    max-width: 100%;
+    border-radius: 0;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* Feed audio */
+  .feed-item audio {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Story text */
+  .story-text {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: #444;
+  }
+
+  /* Caption */
+  .feed-caption {
+    font-size: 14px;
+    color: #555;
+    border-top: 1px solid #ddd;
+    padding-top: 6px;
+  }
+
+  /* Audio player bottom right */
+  .audio-player {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    background: rgba(255 255 255 / 0.5);
+    border: 3px double black;
+    padding: 6px;
+    border-radius: 4px;
+  }
+
+
+  .audio-player button {
+    width: var(--btn-size);
+    height: var(--btn-size);
+    background: transparent;
+    color: silver;
+    border: none;
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    transition: background .12s ease, transform .08s ease;
+  }
+
+  .audio-player button:hover,
+  .audio-player button:focus {
+    background: rgba(0 0 0 / 0.1);
+    outline: none;
+  }
+
+  .audio-player button:active {
+    transform: scale(.98);
+  }
+
+  .audio-player svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    fill: black;
+  }
+
+  /* Play/pause icon toggle */
+  .icon-play { display: block; }
+  .icon-pause { display: none; }
+  .audio-player button.playing .icon-play { display: none; }
+  .audio-player button.playing .icon-pause { display: block; }
+</style>
+</head>
+<body>
+
+<div class="header-left">
+  <img src="background_image.png" alt="Artist Icon" class="artist-icon" />
+  <p class="artist-bio">
+    <b>artist bio</b><br><br>
+    Hi, I'm an artist and I make art along with the child that's still alive inside of me. That can be everything and anything, but especially I draw and make electronic music. That's all part of my inner child work.
+  </p>
+</div>
+
+<div class="feed">
+  <h2>artist log</h2>
+
+ <!--  <div class="feed-item">
+    <div class="feed-item-title">title</div>
+    <div class="feed-item-date">YYYY/MM/DD</div>
+    <img src="image-sample-1.png" alt="Sunset Drawing" />
+    <div class="feed-caption">caption</div>
+  </div>
+
+  <div class="feed-item">
+    <div class="feed-item-title">title</div>
+    <div class="feed-item-date">YYYY/MM/DD</div>
+    <audio controls preload="none" src="background-music.wav"></audio>
+    <div class="feed-caption">caption</div>
+  </div>
+-->
+
+  <div class="feed-item">
+    <div class="feed-item-title">Beginning</div>
+    <div class="feed-item-date">Monday, August 11, 2025</div>
+    <p class="story-text">
+      text
+    </p>
+  </div>
+
+</div>
+
+<div class="audio-player" id="bottomRightPlayer">
+  <button id="toggleBtn" aria-pressed="false" aria-label="Play audio" title="Play">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <g class="icon-play">
+        <path d="M8 5v14l11-7z"></path>
+      </g>
+      <g class="icon-pause">
+        <path d="M6 5h4v14H6z"></path>
+        <path d="M14 5h4v14h-4z"></path>
+      </g>
+    </svg>
+  </button>
+</div>
+
+<audio id="myAudio" src="background-music.wav" preload="none"></audio>
+
+<script>
+(function(){
+  const audio = document.getElementById('myAudio');
+  const btn = document.getElementById('toggleBtn');
+
+  function updateButtonState() {
+    const playing = !audio.paused && !audio.ended;
+    btn.classList.toggle('playing', playing);
+    btn.setAttribute('aria-pressed', String(playing));
+    btn.setAttribute('title', playing ? 'Pause' : 'Play');
+    btn.setAttribute('aria-label', playing ? 'Pause audio' : 'Play audio');
+  }
+
+  btn.addEventListener('click', () => {
+    if (audio.paused || audio.ended) {
+      audio.play().catch(err => console.warn('Playback failed:', err));
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener('play', updateButtonState);
+  audio.addEventListener('pause', updateButtonState);
+  audio.addEventListener('ended', updateButtonState);
+
+  updateButtonState();
+})();
+</script>
+
+</body>
+</html>
