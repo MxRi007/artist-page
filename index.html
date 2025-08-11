@@ -5,12 +5,27 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Artist Page with Bottom-Right Audio Player</title>
 <style>
-  body {
-      font-family: "ＭＳ Ｐゴシック";
-      margin: 0;
-      padding: 0 12px 60px;
-      background: rgba(252, 255, 255, 0.995);
-  }
+body {
+    font-family: "ＭＳ Ｐゴシック";
+    margin: 0;
+    padding: 0 12px 60px;
+    background-color: rgba(252, 255, 255);
+    background-image:
+        repeating-linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.03) 0,
+            rgba(0, 0, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        repeating-linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.03) 0,
+            rgba(0, 0, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 10px
+        );
+}
 
 
 
@@ -79,8 +94,7 @@
     border-radius: 0;
     padding: 14px 18px 18px;
     box-shadow: none;
-    border: 1.5px solid #222;
-    border-style: solid;
+    border-bottom: 2px solid #222;
   }
   /* Remove dashed border from last feed-item */
   .feed-item:last-child {
@@ -188,31 +202,31 @@
   <img src="background_image.png" alt="Artist Icon" class="artist-icon" />
   <p class="artist-bio">
     <b>artist bio</b><br><br>
-    Hi, I'm an artist and I make art along with the child that's still alive inside of me. That can be everything and anything, but especially I draw and make electronic music. That's all part of my inner child work.
+
   </p>
 </div>
 
 <div class="feed">
   <h2>artist log</h2>
 
- <!--  <div class="feed-item">
+<div class="feed-item">
     <div class="feed-item-title">title</div>
     <div class="feed-item-date">YYYY/MM/DD</div>
-    <img src="image-sample-1.png" alt="Sunset Drawing" />
+    <img src="" alt="" />
     <div class="feed-caption">caption</div>
   </div>
 
   <div class="feed-item">
     <div class="feed-item-title">title</div>
     <div class="feed-item-date">YYYY/MM/DD</div>
-    <audio controls preload="none" src="background-music.wav"></audio>
+    <audio controls preload="none" src=""></audio>
     <div class="feed-caption">caption</div>
   </div>
--->
+
 
   <div class="feed-item">
-    <div class="feed-item-title">Beginning</div>
-    <div class="feed-item-date">Monday, August 11, 2025</div>
+    <div class="feed-item-title">title</div>
+    <div class="feed-item-date">YYYY/MM/DD</div>
     <p class="story-text">
       text
     </p>
