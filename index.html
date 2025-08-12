@@ -13,18 +13,20 @@ body {
     background-image:
         repeating-linear-gradient(
             to right,
-            rgba(0, 0, 0, 0.03) 0,
-            rgba(0, 0, 0, 0.03) 1px,
+            rgba(0, 0, 0, 0.1) 0,
+            rgba(0, 0, 0, 0.1) 1px,
             transparent 1px,
             transparent 10px
         ),
         repeating-linear-gradient(
             to bottom,
-            rgba(0, 0, 0, 0.03) 0,
-            rgba(0, 0, 0, 0.03) 1px,
+            rgba(0, 0, 0, 0.1) 0,
+            rgba(0, 0, 0, 0.1) 1px,
             transparent 1px,
             transparent 10px
         );
+
+        background-attachment: fixed;
 }
 
 
@@ -36,17 +38,18 @@ body {
 
   /* Header left: icon + bio */
   .header-left {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    display: flex;
-    align-items: flex-start;
-    padding: 6px;
-    z-index: 9998;
-    max-width: 350px;
-    border-radius: 0;
-    box-shadow: none;
+    position: relative;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: flex-start;
+  padding: 6px;
+  z-index: 9998;
+  max-width: 350px;
+  border-radius: 0;
+  box-shadow: none;
   }
+
   .artist-icon {
     width: 150px !important;
     height: auto !important;
@@ -70,6 +73,16 @@ body {
     max-width: max-content;
   }
 
+  .featured {
+  margin: 190px auto 40px; /* default for desktops */
+}
+
+@media (max-width: 600px) {
+  .featured {
+    margin: 140px auto 30px; /* less gap on small screens */
+  }
+}
+
   .featured h2 {
     margin-bottom: 18px;
     font-size: 14px;
@@ -89,11 +102,18 @@ body {
   }
 
   .feed h2 {
-    margin-bottom: 18px;
+ 
     font-size: 14px;
     border-bottom: 2px solid #222;
     padding-bottom: 4px;
     max-width: max-content;
+    margin: 0; 
+  }
+
+  .feed-header {
+    border-radius: 0;
+    padding-left: 18px;
+    box-shadow: none;
   }
 
   /* Each feed item */
@@ -201,38 +221,211 @@ body {
   .icon-pause { display: none; }
   .audio-player button.playing .icon-play { display: none; }
   .audio-player button.playing .icon-pause { display: block; }
+
+
+  /* Carousel styles */
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-main {
+  max-width: 100%;
+  display: block;
+  border-radius: 0;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 2;
+}
+
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+
+.carousel-thumbs {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.carousel-thumbs img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  border: 2px solid transparent;
+}
+
+.carousel-thumbs img.active {
+  opacity: 1;
+  border-color: black;
+}
+
+/* Menu container */
+.menu {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 9999;
+}
+
+/* Hamburger button */
+.menu-toggle {
+  font-size: 22px;
+  background: rgba(255,255,255,0.8);
+  border: 2px solid black;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+/* Navigation links */
+.menu-nav {
+  display: none;
+  flex-direction: column;
+  background: rgba(255,255,255,0.9);
+  border: 2px solid black;
+  margin-top: 6px;
+}
+
+.menu-nav a {
+  padding: 8px 12px;
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.menu-nav a:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* Show menu when active */
+.menu.open .menu-nav {
+  display: flex;
+}
+
+/* Responsive behavior */
+@media (min-width: 600px) {
+  .menu-nav {
+    display: flex !important;
+    flex-direction: row;
+    background: none;
+    border: none;
+    margin-top: 0;
+  }
+  .menu-nav a {
+    border: none;
+    background: none;
+    padding: 0 8px;
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
+
+
 </style>
 </head>
 <body>
 
-<div class="header-left">
-  <img src="background_image.png" alt="Artist Icon" class="artist-icon" />
+      <!--
+  <div class="menu">
+
+
+    <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    <nav class="menu-nav">
+      <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align: middle; margin-right: 0.3em;">
+        <rect x="0" y="0" width="24" height="24" fill="#000" />
+      </svg>
+      <a href="#bio">Bio</a>
+      <a href="#featured-art">Featured Art</a>
+      <a href="#artist-log">Artist Log</a>
+    </nav>
+  </div>-->
+  
+
+<div class="header-left"  id="bio">
+  <img src="dummy1.png" alt="Artist Icon" class="artist-icon" />
   <p class="artist-bio">
-    <b>artist bio</b><br><br>
+    <b>
+      <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align: middle; margin-right: 0.3em;">
+      <rect x="0" y="0" width="24" height="24" fill="#000" />
+    </svg>
+    
+     artist bio
+    </b><br><br>
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
   </p>
 </div>
 
-<div class="featured" style="max-width: 650px; margin: 180px auto 40px; color: #222; font-size: 14px;">
-  <h2>featured art</h2>
-  <img src="featured-artwork.png" alt="Featured Artwork" style="width: 100%; max-width: 650px; display: block; margin-bottom: 12px;">
+<div class="featured" id="featured-art" style="max-width: 650px; margin: 40px auto 40px; color: #222; font-size: 14px;">
+  <h2>
+  <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align: middle; margin-right: 0.3em;">
+    <rect x="0" y="0" width="24" height="24" fill="#000" />
+  </svg>
+  featured art
+</h2>
+  <img src="dummy1.png" alt="Featured Artwork" style="width: 100%; max-width: 650px; display: block; margin-bottom: 12px;">
   <audio controls preload="none" src="featured-music.mp3" style="width: 100%; max-width: 650px; margin-bottom: 12px;"></audio>
   <div class="feed-caption" style="color: #555; border-top: 1px solid #ddd; padding-top: 6px;">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
   </div>
 </div>
 
-<div class="feed">
-  <h2>artist log</h2>
+<div class="feed" id="artist-log">
+  <div class="feed-header">
+    <h2>
+      <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align: middle; margin-right: 0.3em;">
+      <rect x="0" y="0" width="24" height="24" fill="#000" />
+    </svg>
+    artist log
+  </h2>
+  </div>
+
 
 <div class="feed-item">
     <div class="feed-item-title">title</div>
     <div class="feed-item-date">YYYY/MM/DD</div>
-    <img src="background_image.png" alt="Artwork" class="artwork" />
+    <img src="dummy1.png" alt="Artwork" class="artwork" />
     <div class="feed-caption">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     </div>
   </div>
+
+  <!-- Carousel Feed Item -->
+<div class="feed-item carousel-item">
+  <div class="feed-item-title">title</div>
+  <div class="feed-item-date">YYYY/MM/DD</div>
+
+  <!-- Main carousel display -->
+  <div class="carousel">
+    <button class="carousel-btn prev">&#10094;</button>
+    <img src="dummy1.png" alt="Artwork 1" class="carousel-main" />
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+
+  <!-- Thumbnails -->
+  <div class="carousel-thumbs">
+    <img src="dummy1.png" alt="1" class="active" />
+    <img src="background_image.png" alt="2" />
+    <img src="image3.jpg" alt="3" />
+  </div>
+
+  <div class="feed-caption">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </div>
+</div>
 
   <div class="feed-item">
     <div class="feed-item-title">title</div>
@@ -297,6 +490,42 @@ body {
 
   updateButtonState();
 })();
+
+
+document.querySelectorAll('.carousel-item').forEach(carouselItem => {
+  const mainImg = carouselItem.querySelector('.carousel-main');
+  const thumbs = carouselItem.querySelectorAll('.carousel-thumbs img');
+  const prevBtn = carouselItem.querySelector('.carousel-btn.prev');
+  const nextBtn = carouselItem.querySelector('.carousel-btn.next');
+
+  let currentIndex = 0;
+
+  function updateCarousel(index) {
+    const selectedThumb = thumbs[index];
+    mainImg.src = selectedThumb.src;
+    thumbs.forEach(t => t.classList.remove('active'));
+    selectedThumb.classList.add('active');
+    currentIndex = index;
+  }
+
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener('click', () => updateCarousel(index));
+  });
+
+  prevBtn.addEventListener('click', () => {
+    const newIndex = (currentIndex - 1 + thumbs.length) % thumbs.length;
+    updateCarousel(newIndex);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const newIndex = (currentIndex + 1) % thumbs.length;
+    updateCarousel(newIndex);
+  });
+
+  // Initialize
+  updateCarousel(0);
+});
+
 </script>
 
 </body>
