@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Artist Page with Bottom-Right Audio Player</title>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pixel+Emulator&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 body {
-    font-family: "ＭＳ Ｐゴシック";
+    font-family: 'VT323', monospace, sans-serif;
     margin: 0;
     padding: 0 12px 60px;
     background-color: rgba(252, 255, 255);
@@ -27,6 +29,32 @@ body {
         );
 
         background-attachment: fixed;
+
+        filter: none;           /* Add this */
+        transition: filter 0.3s ease;  /* And this */
+}
+
+.invert-colors {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.invert-grid {
+  background-color: rgb(0, 0, 0);
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1) 0,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.1) 0,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px,
+      transparent 10px
+    );
 }
 
 
@@ -36,16 +64,14 @@ body {
     --icon-size: 20px;
   }
 
+
   /* Header left: icon + bio */
   .header-left {
-    position: relative;
-  top: 12px;
-  right: 12px;
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  padding: 6px;
+  align-items:flex-start;
   z-index: 9998;
-  max-width: 350px;
+  max-width: 650px;
   border-radius: 0;
   box-shadow: none;
   }
@@ -59,19 +85,20 @@ body {
     border-radius: 0;
   }
   .artist-bio {
-    font-size: 14px;
-    max-width: 180px;
+    margin-top: 0px;
+    font-size: 18px;
+    max-width: auto;
     color: #222;
-    line-height: 1.4;
   }
 
   .artist-bio b {
-    margin-bottom: 18px;
-    font-size: 14px;
+    font-size: 20px;
     border-bottom: 2px solid #222;
     padding-bottom: 4px;
     max-width: max-content;
   }
+
+
 
   .featured {
   margin: 190px auto 40px; /* default for desktops */
@@ -85,9 +112,9 @@ body {
 
   .featured h2 {
     margin-bottom: 18px;
-    font-size: 14px;
+    font-size: 20px;
     border-bottom: 2px solid #222;
-    padding-bottom: 4px;
+
     max-width: max-content;
   }
 
@@ -103,9 +130,8 @@ body {
 
   .feed h2 {
  
-    font-size: 14px;
+    font-size: 20px;
     border-bottom: 2px solid #222;
-    padding-bottom: 4px;
     max-width: max-content;
     margin: 0; 
   }
@@ -129,15 +155,22 @@ body {
   }
 
   .feed-item-title {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 6px;
     color: #111;
   }
   .feed-item-date {
-    font-size: 14px;
+    font-size: 18px;
     color: silver;
     margin-bottom: 10px;
   }
+
+  .feed-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; /* aligns date and title nicely */
+  margin-bottom: 6px; /* space below header */
+}
 
   /* Feed images */
   .feed-item img {
@@ -164,7 +197,7 @@ body {
 
   /* Caption */
   .feed-caption {
-    font-size: 14px;
+    font-size: 18px;
     color: #555;
     border-top: 1px solid #ddd;
     padding-top: 6px;
@@ -334,6 +367,13 @@ body {
   }
 }
 
+body {
+  line-height: 1.6;
+}
+
+
+
+
 
 </style>
 </head>
@@ -355,98 +395,104 @@ body {
   </div>-->
   
 
-<div class="header-left"  id="bio">
-  <img src="dummy1.png" alt="Artist Icon" class="artist-icon" />
-  <p class="artist-bio">
-    <b>
-      <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align: middle; margin-right: 0.3em;">
-      <rect x="0" y="0" width="24" height="24" fill="#000" />
-    </svg>
-    
-     artist bio
-    </b><br><br>
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-  </p>
-</div>
-
 <div class="featured" id="featured-art" style="max-width: 650px; margin: 40px auto 40px; color: #222; font-size: 14px;">
+  
+  <div class="header-left"  id="bio">
+    <img src="dummy1.jpg" alt="Artist Icon" class="artist-icon" />
+    <p class="artist-bio">
+      <b>
+
+      </svg>
+      
+       artist bio
+      </b><br>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+    </p>
+  </div>
+  
   <h2>
-  <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align: middle; margin-right: 0.3em;">
-    <rect x="0" y="0" width="24" height="24" fill="#000" />
-  </svg>
   featured art
-</h2>
-  <img src="dummy1.png" alt="Featured Artwork" style="width: 100%; max-width: 650px; display: block; margin-bottom: 12px;">
+  </h2>
+  <img src="dummy1.jpg" alt="Featured Artwork" style="width: 100%; max-width: 650px; display: block; margin-bottom: 12px;">
   <audio controls preload="none" src="featured-music.mp3" style="width: 100%; max-width: 650px; margin-bottom: 12px;"></audio>
   <div class="feed-caption" style="color: #555; border-top: 1px solid #ddd; padding-top: 6px;">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
   </div>
-</div>
-
-<div class="feed" id="artist-log">
-  <div class="feed-header">
-    <h2>
-      <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align: middle; margin-right: 0.3em;">
-      <rect x="0" y="0" width="24" height="24" fill="#000" />
-    </svg>
-    artist log
-  </h2>
-  </div>
 
 
-<div class="feed-item">
-    <div class="feed-item-title">title</div>
-    <div class="feed-item-date">YYYY/MM/DD</div>
-    <img src="dummy1.png" alt="Artwork" class="artwork" />
-    <div class="feed-caption">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  <div class="feed" id="artist-log">
+    <div class="feed-header">
+      <h2>
+
+      artist log
+    </h2>
     </div>
-  </div>
-
-  <!-- Carousel Feed Item -->
-<div class="feed-item carousel-item">
-  <div class="feed-item-title">title</div>
-  <div class="feed-item-date">YYYY/MM/DD</div>
-
-  <!-- Main carousel display -->
-  <div class="carousel">
-    <button class="carousel-btn prev">&#10094;</button>
-    <img src="dummy1.png" alt="Artwork 1" class="carousel-main" />
-    <button class="carousel-btn next">&#10095;</button>
-  </div>
-
-  <!-- Thumbnails -->
-  <div class="carousel-thumbs">
-    <img src="dummy1.png" alt="1" class="active" />
-    <img src="background_image.png" alt="2" />
-    <img src="image3.jpg" alt="3" />
-  </div>
-
-  <div class="feed-caption">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-  </div>
-</div>
-
+  
+  
   <div class="feed-item">
+    <div class="feed-item-header">
+      <div class="feed-item-title">title</div>
+      <div class="feed-item-date">YYYY/MM/DD</div>
+    </div>
+      <img src="dummy1.jpg" alt="Artwork" class="artwork" />
+      <div class="feed-caption">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </div>
+    </div>
+  
+    <!-- Carousel Feed Item -->
+  <div class="feed-item carousel-item">
+    <div class="feed-item-header">
     <div class="feed-item-title">title</div>
     <div class="feed-item-date">YYYY/MM/DD</div>
-    <audio controls preload="none" src=""></audio>
+  </div>
+    <!-- Main carousel display -->
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="dummy1.jpg" alt="Artwork 1" class="carousel-main" />
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  
+    <!-- Thumbnails -->
+    <div class="carousel-thumbs">
+      <img src="dummy1.jpg" alt="1" class="active" />
+      <img src="background_image.png" alt="2" />
+      <img src="image3.jpg" alt="3" />
+    </div>
+  
     <div class="feed-caption">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     </div>
   </div>
-
-
-  <div class="feed-item">
-    <div class="feed-item-title">title</div>
-    <div class="feed-item-date">YYYY/MM/DD</div>
-    <div class="feed-caption">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  
+    <div class="feed-item">
+      <div class="feed-item-header">
+      <div class="feed-item-title">title</div>
+      <div class="feed-item-date">YYYY/MM/DD</div>
+      </div>
+      <audio controls preload="none" src=""></audio>
+      <div class="feed-caption">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </div>
     </div>
+  
+  
+    <div class="feed-item">
+      <div class="feed-item-header">
+      <div class="feed-item-title">title</div>
+      <div class="feed-item-date">YYYY/MM/DD</div>
+      </div>
+      <div class="feed-caption">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </div>
+    </div>
+  
   </div>
-
 </div>
 
+
+<!--
 <div class="audio-player" id="bottomRightPlayer">
   <button id="toggleBtn" aria-pressed="false" aria-label="Play audio" title="Play">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -461,7 +507,7 @@ body {
   </button>
 </div>
 
-<audio id="myAudio" src="background-music.wav" preload="none"></audio>
+<audio id="myAudio" src="background-music.wav" preload="none"></audio>-->
 
 <script>
 (function(){
@@ -525,6 +571,13 @@ document.querySelectorAll('.carousel-item').forEach(carouselItem => {
   // Initialize
   updateCarousel(0);
 });
+
+const invertButton = document.getElementById('invertButton');
+
+invertButton.addEventListener('click', () => {
+  document.body.classList.toggle('invert-colors');
+  document.body.classList.toggle('invert-grid');
+}); 
 
 </script>
 
